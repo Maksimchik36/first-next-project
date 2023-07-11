@@ -1,19 +1,36 @@
-.container{
-
+.item {
+    display: flex;
+    gap: 50px;
+    margin-top: 50px;
+    margin-bottom: 100px;
 }
 
-.catTitle{}
-
-.item{}
-
-.content{}
-
-.title{}
-
-.description{}
-
-.imgContainer{
+.item:nth-child(2n+1) {
+    flex-direction: row-reverse;
 }
 
-.img{
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.title {
+    font-size: 50px;
+}
+
+.description {
+    font-size: 20px;
+}
+
+.imgContainer {
+    flex: 1;
+    height: 500px;
+    position: relative;
+}
+
+.img {
+    object-fit: cover;
 }

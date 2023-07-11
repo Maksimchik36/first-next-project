@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./page.module.css";
 import Image from "next/image";
-import Button from "@/components/button/Button";
+import Button from "@/components/Button/Button";
 
 const Category = ({ params }) => {
   return (
@@ -16,7 +16,7 @@ const Category = ({ params }) => {
 
         <div className={styles.imgContainer}>
           <Image
-            src=""
+            src="https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg"
             alt="Image must be here."
             fill={true}
             className={styles.img}
