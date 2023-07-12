@@ -1,14 +1,28 @@
 import React from "react";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import styles from './page.module.css';
 
+async function getDataById(id) {
 
-const BlogPost = () => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { cache: 'no-store' })
+
+  if (!res.ok) {
+    return notFound();
+  }
+
+  return res.json()
+}
+
+
+const BlogPost = async ({ params }) => {
+  const data = await getDataById(params.id);
+
   return <div className={styles.container}>
     <div className={styles.top}>
       <div className={styles.info}>
-        <h1 className={styles.title}>Title</h1>
-        <p className={styles.description}>Description</p>
+        <h1 className={styles.title}>{data.title}</h1>
+        <p className={styles.description}>{data.body}</p>
         <div className={styles.author}>
           <Image
             src="https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg"
@@ -17,7 +31,7 @@ const BlogPost = () => {
             height={40}
             className={styles.avatar}
           />
-          <span className={styles.username}>username</span>
+          <span className={styles.username}>{`username ${data.userId}`}</span>
         </div>
       </div>
       <div className={styles.imgContainer}>
@@ -30,24 +44,8 @@ const BlogPost = () => {
       </div>
     </div>
     <div className={styles.content}>
-      <p className={styles.text}>Text</p>
+      <p className={styles.text}>{data.body}</p>
     </div>
-    {/* <Link href='/blog/testId' className={styles.container}>
-      <div className={styles.imgContainer}>
-        <Image
-          src="https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg"
-          alt="Image must be here."
-          width={400}
-          height={250}
-          className={styles.img}
-        />
-      </div>
-
-      <div className={styles.content}>
-        <h1 className={styles.title}>Title</h1>
-        <p className={styles.description}>Description</p>
-      </div>
-    </Link> */}
   </div>;
 };
 
