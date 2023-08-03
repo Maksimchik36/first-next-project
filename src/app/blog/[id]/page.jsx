@@ -5,10 +5,10 @@ import styles from './page.module.css';
 
 async function getDataById(id) {
   // for localhost
-  // const res = await fetch(`http://localhost:3000/api/posts/${id}`, { cache: 'no-store' })
+  const res = await fetch(`http://localhost:3000/api/posts/${id}`, { cache: 'no-store' })
 
-  // for vercel
-  const res = await fetch(`http://127.0.0.1:3000/api/posts/${id}`, { cache: 'no-store' })
+  // // for vercel
+  // const res = await fetch(`http://127.0.0.1:3000/api/posts/${id}`, { cache: 'no-store' })
 
   if (!res.ok) {
     return notFound();
