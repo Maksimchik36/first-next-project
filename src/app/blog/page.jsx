@@ -9,7 +9,7 @@ async function getData() {
   // const res = await fetch('http://localhost:3000/api/posts', { cache: 'no-store' })
 
   // for vercel
-  const res = await fetch('https://first-next-project-delta.vercel.app/api/posts', { cache: 'no-store' })
+  const res = await fetch('http://127.0.0.1:3000/api/posts', { cache: 'no-store' })
 
   if (!res.ok) {
     // return notFound();
