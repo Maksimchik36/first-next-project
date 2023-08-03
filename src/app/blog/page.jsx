@@ -6,10 +6,10 @@ import styles from "./page.module.css";
 
 async function getData() {
   // for localhost
-  // const res = await fetch('http://localhost:3000/api/posts', { cache: 'no-store' })
+  const res = await fetch('http://localhost:3000/api/posts', { cache: 'no-store' })
 
-  // for vercel
-  const res = await fetch('http://127.0.0.1:3000/api/posts', { cache: 'no-store' })
+  // // for vercel
+  // const res = await fetch('http://127.0.0.1:3000/api/posts', { cache: 'no-store' })
 
   if (!res.ok) {
     // return notFound();
