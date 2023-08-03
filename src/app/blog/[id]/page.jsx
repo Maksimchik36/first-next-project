@@ -4,8 +4,12 @@ import { notFound } from "next/navigation";
 import styles from './page.module.css';
 
 async function getDataById(id) {
+  // for localhost
+  // const res = await fetch(`http://localhost:3000/api/posts/${id}`, { cache: 'no-store' })
 
-  const res = await fetch(`http://localhost:3000/api/posts/${id}`, { cache: 'no-store' })
+  // for vercel
+  const res = await fetch(`https://first-next-project-delta.vercel.app/api/posts/${id}`, { cache: 'no-store' });
+
 
   if (!res.ok) {
     return notFound();
