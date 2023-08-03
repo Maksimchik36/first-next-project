@@ -1,10 +1,12 @@
 "use client";
-
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
+import React from 'react';
+// next.js hook
 import useSWR from 'swr';
 
 
 const Dashboard = () => {
+  // // using useEffect
   // const [data, setData] = useState([]);
   // const [err, setErr] = useState(false);
   // const [isLoading, setIsLoading] = useState(false);
@@ -27,6 +29,8 @@ const Dashboard = () => {
 
   // console.log("data", data);
 
+
+  // recommended if you fetching data on the client-side
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
   const { data, error, isLoading } = useSWR('https://jsonplaceholder.typicode.com/posts', fetcher);

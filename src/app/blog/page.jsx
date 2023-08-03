@@ -1,14 +1,16 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 
 async function getData() {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts', { cache: 'no-store' })
+
+  const res = await fetch('http://localhost:3000/api/posts', { cache: 'no-store' })
 
   if (!res.ok) {
-    return notFound();
+    // return notFound();
+    throw new Error("Failed to fetch data.")
   }
 
   return res.json()
@@ -19,10 +21,10 @@ const Blog = async () => {
   const data = await getData();
 
   return <div className={styles.mainContainer}>
-    {data.map(item => (<Link key={item.id} href='/blog/testId' className={styles.container}>
+    {data.map(item => (<Link key={item.id} href={`/blog/${item._id}`} className={styles.container}>
       <div className={styles.imgContainer}>
         <Image
-          src="https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg"
+          src={item.img}
           alt="Image must be here."
           width={400}
           height={250}
@@ -32,7 +34,7 @@ const Blog = async () => {
 
       <div className={styles.content}>
         <h1 className={styles.title}>{item.title}</h1>
-        <p className={styles.description}>{item.body}</p>
+        <p className={styles.description}>{item.description}</p>
       </div>
     </Link>))}
   </div>;

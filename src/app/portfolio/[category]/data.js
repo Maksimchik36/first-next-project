@@ -2,10 +2,9 @@ export const items = {
     applications: [
         {
             id: 1,
-            title: "Creative Portfolio",
+            title: "Creative Applications",
             description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur vel tenetur necessitatibus unde natus perspiciatis, amet cupiditate ducimus possimus, eaque ex autem id nobis eum dolorem. Neque eveniet fugiat tenetur?",
-            image:
-                "https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg",
+            image: "https://images.pexels.com/photos/2916450/pexels-photo-2916450.jpeg",
         },
         {
             id: 2,
@@ -25,30 +24,27 @@ export const items = {
     illustrations: [
         {
             id: 1,
-            title: "Creative Portfolio",
+            title: "Creative Illustrations",
             description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur vel tenetur necessitatibus unde natus perspiciatis, amet cupiditate ducimus possimus, eaque ex autem id nobis eum dolorem. Neque eveniet fugiat tenetur?",
-            image:
-                "https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg",
+            image: "https://images.pexels.com/photos/2103127/pexels-photo-2103127.jpeg",
         },
         {
             id: 2,
             title: "Minimal Single Product",
             description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur vel tenetur necessitatibus unde natus perspiciatis, amet cupiditate ducimus possimus, eaque ex autem id nobis eum dolorem. Neque eveniet fugiat tenetur?",
-            image:
-                "https://images.pexels.com/photos/2103127/pexels-photo-2103127.jpeg",
+            image: "https://images.pexels.com/photos/2916450/pexels-photo-2916450.jpeg",
         },
         {
             id: 3,
             title: "Strong Together Charity",
             description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur vel tenetur necessitatibus unde natus perspiciatis, amet cupiditate ducimus possimus, eaque ex autem id nobis eum dolorem. Neque eveniet fugiat tenetur?",
-            image:
-                "https://images.pexels.com/photos/2916450/pexels-photo-2916450.jpeg",
+            image: "https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg",
         }
     ],
     websites: [
         {
             id: 1,
-            title: "Creative Portfolio",
+            title: "Creative Websites",
             description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur vel tenetur necessitatibus unde natus perspiciatis, amet cupiditate ducimus possimus, eaque ex autem id nobis eum dolorem. Neque eveniet fugiat tenetur?",
             image:
                 "https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg",
@@ -57,15 +53,13 @@ export const items = {
             id: 2,
             title: "Minimal Single Product",
             description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur vel tenetur necessitatibus unde natus perspiciatis, amet cupiditate ducimus possimus, eaque ex autem id nobis eum dolorem. Neque eveniet fugiat tenetur?",
-            image:
-                "https://images.pexels.com/photos/2103127/pexels-photo-2103127.jpeg",
+            image: "https://images.pexels.com/photos/3130810/pexels-photo-3130810.jpeg",
         },
         {
             id: 3,
             title: "Strong Together Charity",
             description: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur vel tenetur necessitatibus unde natus perspiciatis, amet cupiditate ducimus possimus, eaque ex autem id nobis eum dolorem. Neque eveniet fugiat tenetur?",
-            image:
-                "https://images.pexels.com/photos/2916450/pexels-photo-2916450.jpeg",
+            image: "https://images.pexels.com/photos/2103127/pexels-photo-2103127.jpeg",
         }
     ],
 };
