@@ -3,6 +3,17 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import styles from './page.module.css';
 
+//dynamic metadata
+export async function generateMetadata({ params }) {
+
+  const post = await getDataById(params.id);
+
+  return {
+    title: post.title,
+    description: post.description,
+  }
+}
+
 async function getDataById(id) {
   // for localhost
   const res = await fetch(`http://localhost:3000/api/posts/${id}`, { cache: 'no-store' })
@@ -16,7 +27,6 @@ async function getDataById(id) {
 
   return res.json()
 }
-
 
 const BlogPost = async ({ params }) => {
   const data = await getDataById(params.id);
@@ -34,7 +44,7 @@ const BlogPost = async ({ params }) => {
             height={40}
             className={styles.avatar}
           />
-          <span className={styles.username}>{`username ${data.username}`}</span>
+          <span className={styles.username}>{data.username}</span>
         </div>
       </div>
       <div className={styles.imgContainer}>
