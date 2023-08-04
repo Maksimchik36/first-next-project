@@ -4,6 +4,12 @@ import Link from "next/link";
 // import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 
+// static metadata
+export const metadata = {
+  title: 'Blog Information',
+  description: 'This is blog page.',
+}
+
 async function getData() {
   // for localhost
   const res = await fetch('http://localhost:3000/api/posts', { cache: 'no-store' })
