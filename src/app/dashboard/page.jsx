@@ -1,4 +1,5 @@
 "use client";
+import { useSession } from 'next-auth/react';
 // import React, { useState, useEffect } from 'react';
 import React from 'react';
 // next.js hook
@@ -31,6 +32,10 @@ const Dashboard = () => {
 
 
   // recommended if you fetching data on the client-side
+
+  const session = useSession();
+  console.log("session", session);
+
   const fetcher = (...args) => fetch(...args).then(res => res.json())
 
   const { data, error, isLoading } = useSWR('https://jsonplaceholder.typicode.com/posts', fetcher);
