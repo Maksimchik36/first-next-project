@@ -22,7 +22,7 @@ const handler = NextAuth({
                 await connect();
 
                 try {
-                    const user = User.findOne({ email: credentials.email });
+                    const user = await User.findOne({ email: credentials.email });
 
                     if (user) {
                         // проверка пароля. расшифровка с помощью bcrypt
@@ -44,6 +44,10 @@ const handler = NextAuth({
             }
         })
     ],
+    pages: {
+        // при ошибке при некорректной логинизации пользователь должен остаться на следующей странице:
+        error: "/dashboard/login",
+    }
 })
 
 
