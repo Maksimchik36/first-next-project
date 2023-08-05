@@ -1,13 +1,48 @@
-import NextAuth from "next-auth"
-import GoogleProvider from "next-auth/providers/google"
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import connect from "@/utils/db";
+import User from "@/models/User";
+import bcrypt from "bcryptjs";
 
 
 const handler = NextAuth({
     providers: [
+        // логинизация пользователей, данные которых указаны в .env
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }),
+        // логинизация пользователей, которые сами регистрировались на сайте
+        CredentialsProvider({
+            id: "credentials",
+            name: "Credentials",
+
+            async authorize(credentials) {
+                await connect();
+
+                try {
+                    const user = User.findOne({ email: credentials.email });
+
+                    if (user) {
+                        // проверка пароля. расшифровка с помощью bcrypt
+                        const isPasswordCorrect = await bcrypt.compare(credentials.password, user.password);
+
+                        if (isPasswordCorrect) {
+                            return user;
+                        } else {
+                            throw new Error("Wrong Credentials.")
+                        }
+
+                    } else {
+                        throw new Error("User not found.");
+                    }
+
+                } catch (err) {
+                    throw new Error(err);
+                }
+            }
+        })
     ],
 })
 
