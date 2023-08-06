@@ -6,6 +6,7 @@ import React from 'react';
 // next.js hook for fetching
 import useSWR from 'swr';
 import styles from "./page.module.css";
+import Image from 'next/image';
 
 
 const Dashboard = () => {
@@ -49,9 +50,56 @@ const Dashboard = () => {
     router?.push("/dashboard/login");
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const title = e.target[0].value;
+    const description = e.target[1].value;
+    const img = e.target[2].value;
+    const content = e.target[3].value;
+
+    try {
+      await fetch('/api/posts', {
+        method: "POST",
+        body: JSON.stringify({
+          title,
+          description,
+          img,
+          content,
+          username: session.data.user.name,
+        })
+      })
+
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+
   if (session.status === "authenticated") {
     return (
-      <div className={styles.container}>Dashboard</div>
+      <div className={styles.container}>
+        <div className={styles.posts}>
+          {isLoading
+            ? <p>Loading...</p>
+            : data?.map(post => (
+              <div key={post._id} className={styles.post}>
+                <div className={styles.imgContainer}>
+                  <Image src={post.img} alt={post.title} fill={true} />
+                </div>
+                <h2 className={styles.postTitle}>{post.title}</h2>
+                <span className={styles.delete}>X</span>
+              </div>))}
+        </div>
+
+        <form className={styles.new} onSubmit={handleSubmit}>
+          <h1>Add New Post</h1>
+          <input type='text' placeholder='Title' className={styles.input} />
+          <input type='text' placeholder='Description' className={styles.input} />
+          <input type='text' placeholder='Image' className={styles.input} />
+          <textarea placeholder='Content' className={styles.textarea} cols="30" rows="10"></textarea>
+          <button className={styles.sendBtn}>Send</button>
+        </form>
+      </div>
     )
   }
 }
