@@ -1,19 +1,32 @@
 "use client";
 import React from "react";
 import styles from "./page.module.css";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 
 const Login = () => {
+  // дает данные о пользователе - data, залогинен он или нет - status
+  const session = useSession();
+  // console.log(session) // { "data": null,  "status": "unauthenticated"}
+
+  const router = useRouter();
+
+  if (session.status === "loading") {
+    return <p>Loading...</p>
+  }
+
+  // перенаправляет на другую страницу за счет роутера
+  if (session.status === "authenticated") {
+    router?.push("/dashboard");
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = e.target[0].value;
     const password = e.target[1].value;
 
-    signIn("credentials", { email, password })
-
-
+    signIn("credentials", { email, password });
   }
 
   return <div className={styles.container}>
