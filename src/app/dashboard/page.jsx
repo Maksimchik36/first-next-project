@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 // next.js hook for fetching
 import useSWR from 'swr';
+import styles from "./page.module.css";
 
 
 const Dashboard = () => {
@@ -36,7 +37,7 @@ const Dashboard = () => {
   const session = useSession();
   console.log("session", session);
   const fetcher = (...args) => fetch(...args).then(res => res.json())
-  const { data, error, isLoading } = useSWR('https://jsonplaceholder.typicode.com/posts', fetcher);
+  const { data, error, isLoading } = useSWR(`/api/posts?username=${session?.data?.user.name}`, fetcher);
 
   const router = useRouter();
 
@@ -50,7 +51,7 @@ const Dashboard = () => {
 
   if (session.status === "authenticated") {
     return (
-      <div>Dashboard</div>
+      <div className={styles.container}>Dashboard</div>
     )
   }
 }
