@@ -13,6 +13,7 @@ export const metadata = {
   description: 'First Next.js Project',
 }
 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
