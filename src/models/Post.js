@@ -30,5 +30,5 @@ const postSchema = new Schema({
 
 
 // export default mongoose.model("Post", postSchema);
-//If the Post collection does not exist create a new one.
+//If the Post collection does not exist - create a new one.
 export default mongoose.models.Post || mongoose.model("Post", postSchema);

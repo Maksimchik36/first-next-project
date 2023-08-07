@@ -7,9 +7,12 @@ import React from 'react';
 import useSWR from 'swr';
 import styles from "./page.module.css";
 import Image from 'next/image';
+// import Post from '@/models/Post';
 
 
 const Dashboard = () => {
+  // OLD WAY TO FETCH DATA
+
   // // using useEffect
   // const [data, setData] = useState([]);
   // const [err, setErr] = useState(false);
@@ -36,7 +39,8 @@ const Dashboard = () => {
 
   // recommended if you fetching data on the client-side
   const session = useSession();
-  console.log("session", session);
+  // console.log("session", session);
+  // NEW WAY TO FETCH DATA
   const fetcher = (...args) => fetch(...args).then(res => res.json())
   const { data, mutate, error, isLoading } = useSWR(`/api/posts?username=${session?.data?.user.name}`, fetcher);
 
@@ -68,16 +72,35 @@ const Dashboard = () => {
           username: session.data.user.name,
         })
       })
+      // данные обновляются без перезагрузки страницы
+      mutate();
+      e.target.reset();
 
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleDelete = async (id) => {
+
+    try {
+      await fetch(`/api/posts/${id}`, {
+        method: 'DELETE',
+      })
+
+      // данные обновляются без перезагрузки страницы
       mutate();
 
     } catch (err) {
       console.log(err);
     }
-
   }
 
+
   if (session.status === "authenticated") {
+    // console.log("data", data);
+
+
     return (
       <div className={styles.container}>
         <div className={styles.posts}>
@@ -89,7 +112,7 @@ const Dashboard = () => {
                   <Image src={post.img} alt={post.title} fill={true} />
                 </div>
                 <h2 className={styles.postTitle}>{post.title}</h2>
-                <span className={styles.delete}>X</span>
+                <span className={styles.delete} onClick={() => handleDelete(post._id)}>X</span>
               </div>))}
         </div>
 

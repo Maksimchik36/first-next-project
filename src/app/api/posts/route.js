@@ -25,12 +25,12 @@ export const GET = async (request) => {
 
 
 export const POST = async (request) => {
-    console.log("request", request);
+    // console.log("request", request);
     const body = await request.json();
-    console.log("body", body);
+    // console.log("body", body);
 
     const newPost = new Post(body);
-    console.log("newPost", newPost);
+    // console.log("newPost", newPost);
 
     try {
         await connect();
