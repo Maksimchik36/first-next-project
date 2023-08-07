@@ -12,6 +12,9 @@
     align-items: center;
     justify-content: space-between;
     margin: 50px 0px;
+    padding: 10px;
+    background-color: #583c68;
+    border-radius: 5px;
 }
 
 .imgContainer {
@@ -24,7 +27,9 @@
     object-fit: cover;
 }
 
-.postTitle {}
+.postTitle {
+    font-size: 28px;
+}
 
 .delete {
     cursor: pointer;
