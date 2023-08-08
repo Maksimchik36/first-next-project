@@ -11,11 +11,8 @@ export const metadata = {
 }
 
 async function getData() {
-  // for localhost
-  const res = await fetch('http://localhost:3000/api/posts', { cache: 'no-store' })
 
-  // // for vercel
-  // const res = await fetch('http://127.0.0.1:3000/api/posts', { cache: 'no-store' })
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, { cache: 'no-store' });
 
   if (!res.ok) {
     // return notFound();
@@ -28,9 +25,10 @@ async function getData() {
 
 const Blog = async () => {
   const data = await getData();
+  // console.log("data", data)
 
   return <div className={styles.mainContainer}>
-    {data.map(item => (<Link key={item.id} href={`/blog/${item._id}`} className={styles.container}>
+    {data?.map(item => (<Link key={item._id} href={`/blog/${item._id}`} className={styles.container}>
       <div className={styles.imgContainer}>
         <Image
           src={item.img}
@@ -48,5 +46,6 @@ const Blog = async () => {
     </Link>))}
   </div>;
 };
+
 
 export default Blog;

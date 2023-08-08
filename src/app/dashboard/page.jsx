@@ -98,7 +98,7 @@ const Dashboard = () => {
 
 
   if (session.status === "authenticated") {
-    // console.log("data", data);
+    // console.log("session", session);
 
 
     return (

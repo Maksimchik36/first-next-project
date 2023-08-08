@@ -40,7 +40,7 @@ export const POST = async (request) => {
         return new NextResponse("Post has been created.", { status: 201 })
 
     } catch (error) {
-        console.log("error here", error);
+        console.log("error", error);
         return new NextResponse("Database Error", { status: 500 });
     }
 }
