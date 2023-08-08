@@ -5,7 +5,7 @@ import Post from "@/models/Post";
 
 export const GET = async (request, { params }) => {
     const { id } = params;
-
+    // console.log("request", request)
     try {
         await connect();
 
