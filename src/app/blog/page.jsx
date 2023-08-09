@@ -11,17 +11,17 @@ export const metadata = {
   description: 'This is blog page.',
 }
 
-// async function getData() {
+async function getData() {
 
-//   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, { cache: 'no-store' });
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, { cache: 'no-store' });
 
-//   if (!res.ok) {
-//     // return notFound();
-//     throw new Error("Failed to fetch data.")
-//   }
+  if (!res.ok) {
+    // return notFound();
+    throw new Error("Failed to fetch data.")
+  }
 
-//   return res.json()
-// }
+  return res.json();
+}
 
 
 // export async function getServerSideProps() {
@@ -31,27 +31,17 @@ export const metadata = {
 //   const data = await res.json()
 //   // console.log("data in getServerSideProps", data);
 
-//   return { props: { data } }
+//   return data;
 // }
 
 
-export async function getServerSideProps() {
-
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`);
-
-  const data = await res.json()
-  // console.log("data in getServerSideProps", data);
-
-  return data;
-}
-
-
 const Blog = async () => {
-  // const data = await getData();
-  const result = await getServerSideProps();
-  // console.log("resultic data in blog", result.props.data)
-  // const data = result.props.data;
-  const data = result;
+  const data = await getData();
+  // console.log("data", data);
+  // const result = await getServerSideProps();
+  // // console.log("resultic data in blog", result.props.data)
+  // // const data = result.props.data;
+  // const data = result;
 
 
   return <div className={styles.mainContainer}>
