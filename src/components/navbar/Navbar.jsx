@@ -48,8 +48,11 @@ const Navbar = () => {
       <Link href="/" className={styles.logo}>
         Magic
       </Link>
+
       <div className={styles.links}>
+
         <DarkModeToggle />
+
         {links.map((link) => (
           <Link key={link.id} href={link.url} className={styles.link}>
             {link.title}
@@ -62,6 +65,7 @@ const Navbar = () => {
         >
           Logout
         </button>)}
+
       </div>
     </div>
   );
