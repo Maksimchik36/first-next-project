@@ -3,16 +3,16 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import styles from './page.module.css';
 
-// //dynamic metadata
-// export async function generateMetadata({ params }) {
+//dynamic metadata
+export async function generateMetadata({ params }) {
 
-//   const post = await getDataById(params.id);
+  const post = await getDataById(params.id);
 
-//   return {
-//     title: post.title,
-//     description: post.description,
-//   }
-// }
+  return {
+    title: post.title,
+    description: post.description,
+  }
+}
 
 async function getDataById(id) {
 
@@ -27,7 +27,7 @@ async function getDataById(id) {
 }
 
 const BlogPost = async ({ params }) => {
-  
+
   const data = await getDataById(params.id);
 
 

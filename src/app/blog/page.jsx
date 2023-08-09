@@ -1,9 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-// import { notFound } from "next/navigation";
 import styles from "./page.module.css";
-// import { data } from './data';
 
 // static metadata
 export const metadata = {
@@ -16,7 +14,6 @@ async function getData() {
   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`, { cache: 'no-store' });
 
   if (!res.ok) {
-    // return notFound();
     throw new Error("Failed to fetch data.")
   }
 
@@ -24,24 +21,8 @@ async function getData() {
 }
 
 
-// export async function getServerSideProps() {
-
-//   const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts`);
-
-//   const data = await res.json()
-//   // console.log("data in getServerSideProps", data);
-
-//   return data;
-// }
-
-
 const Blog = async () => {
   const data = await getData();
-  // console.log("data", data);
-  // const result = await getServerSideProps();
-  // // console.log("resultic data in blog", result.props.data)
-  // // const data = result.props.data;
-  // const data = result;
 
 
   return <div className={styles.mainContainer}>
